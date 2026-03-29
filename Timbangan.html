@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form Input Pressure</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background:#f5f5f5;
+  padding:20px;
+}
+
+form {
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  max-width:500px;
+  margin:auto;
+  box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+label {
+  display:block;
+  margin-top:15px;
+  font-weight:bold;
+}
+
+input, select {
+  width:100%;
+  padding:8px;
+  margin-top:5px;
+  border:1px solid #ccc;
+  border-radius:5px;
+}
+
+/* Instrument Code */
+.code-group {
+  display:grid;
+  grid-template-columns:60px 15px 1fr 15px 1fr 15px 1fr 15px 1fr;
+  align-items:center;
+  gap:5px;
+}
+
+.code-group input {
+  text-align:center;
+}
+
+.code-group input:first-child {
+  background:#eee;
+  font-weight:bold;
+}
+
+.code-group span {
+  text-align:center;
+  font-weight:bold;
+}
+
+/* Time */
+.time-group{
+  display:flex;
+  gap:10px;
+}
+
+.time-group div{
+  flex:1;
+}
+
+/* Checkbox */
+.checkbox-group{
+  margin-top:8px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.checkbox-group label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:normal;
+  margin-top:0;
+}
+
+.checkbox-group input{
+  width:auto;
+}
+
+/* Button */
+button {
+  margin-top:20px;
+  width:100%;
+  padding:10px;
+  background:#007BFF;
+  color:white;
+  border:none;
+  border-radius:5px;
+  font-size:16px;
+  cursor:pointer;
+}
+
+.repeat-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+  font-size:13px;
+}
+
+.repeat-table th,
+.repeat-table td{
+  border:1px solid #999;
+  padding:5px;
+  text-align:center;
+}
+
+.repeat-table th{
+  background:#eaeaea;
+  font-weight:bold;
+}
+
+.repeat-table input{
+  width:90%;
+  text-align:center;
+  padding:3px;
+  border:1px solid #ccc;
+  border-radius:3px;
+}
+
+/* khusus input header */
+.ref-input{
+  width:70%;
+}
+
+.mini{
+  width:60px;
+  border:1px solid #ccc !important;
+}
+
+.beban-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+.beban-table th, .beban-table td{
+  border:1px solid #ccc;
+  padding:6px;
+  text-align:center;
+}
+
+.beban-table th{
+  background:#eaeaea;
+  font-weight:bold;
+}
+
+.beban-table input{
+  width:100%;
+  text-align:center;
+}
+
+.tare-header{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+
+.tare-header div{
+  font-size:14px;
+}
+
+.mini{
+  width:80px;
+  margin:0 5px;
+  text-align:center;
+}
+
+.tare-container{
+  display:flex;
+  gap:15px;
+  margin-top:10px;
+}
+
+.tare-box{
+  flex:1;
+}
+
+.tare-title{
+  text-align:center;
+  font-weight:bold;
+  background:#f2f2f2;
+  padding:6px;
+  border:1px solid #ccc;
+}
+
+.tare-box table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+.tare-box th, .tare-box td{
+  border:1px solid #ccc;
+  padding:6px;
+  text-align:center;
+}
+
+.tare-box input{
+  width:100%;
+  text-align:center;
+}
+
+.pinggan-header{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:10px;
+  flex-wrap:wrap;
+}
+
+.pinggan-header div{
+  font-size:14px;
+}
+
+.pinggan-table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+}
+
+.pinggan-table th, .pinggan-table td{
+  border:1px solid #ccc;
+  padding:6px;
+  text-align:center;
+}
+
+.pinggan-table th{
+  background:#f2f2f2;
+  font-weight:bold;
+}
+
+.pinggan-table input{
+  width:100%;
+  text-align:center;
+}
+
+button:hover {
+  background:#0056b3;
+}
+</style>
+</head>
+
+<body>
+
+<form id="dataForm">
+  <h2>Form Input Pressure</h2>
+
+  <label>Nama:</label>
+  <select name="NAMA" required>
+    <option value="">-- Pilih Nama --</option>
+    <option>Gibran</option>
+    <option>Murdani</option>
+    <option>Ali Janudin</option>
+    <option>Fadil</option>
+    <option>Bayu Samudra</option>
+  </select>
+
+  <label>Instrument Code:</label>
+  <div class="code-group">
+    <input type="text" value="TJN" readonly>
+    <span>-</span>
+    <input type="text" id="X1" required>
+    <span>-</span>
+    <input type="text" id="X2" required>
+    <span>-</span>
+    <input type="text" id="X3">
+    <span>-</span>
+    <input type="text" id="X4">
+  </div>
+
+  <input type="hidden" name="InstrumentCode" id="InstrumentCode">
+
+  <label>Identitas Standard:</label>
+  <div class="checkbox-group">
+    <label><input type="checkbox" class="stdCheck" value="CL-PI-01"> CL-PI-01</label>
+    <label><input type="checkbox" class="stdCheck" value="CL-PI-08"> CL-PI-08</label>
+    <label><input type="checkbox" class="stdCheck" value="CL-PI-05"> CL-PI-05</label>
+    <label><input type="checkbox" class="stdCheck" value="CL-PI-10"> CL-PI-10</label>
+    <label><input type="checkbox" class="stdCheck" value="CL-PI-11"> CL-PI-11</label>
+  </div>
+
+  <input type="hidden" name="IdentitasStandard" id="IdentitasStandard">
+
+  <label>Tanggal:</label>
+  <input type="date" name="Tanggal" required>
+
+  <label>Waktu Kalibrasi:</label>
+  <div class="time-group">
+    <div>
+      <label>Jam Start</label>
+      <input type="time" name="JamStart" required>
+    </div>
+    <div>
+      <label>Jam Finish</label>
+      <input type="time" name="JamFinish" required>
+    </div>
+  </div>
+
+  <label>Tempat:</label>
+  <select name="Tempat" required>
+    <option value="">-- Tempat --</option>
+    <option>Calibrasi Room PP2</option>
+  </select>
+
+  <label>Suhu ruang (°C):</label>
+  <input type="number" step="0.01" name="SuhuRuang" required>
+
+  <label>Kelembaban (%RH):</label>
+  <input type="number" step="0.01" name="Kelembaban" required>
+  
+<label>1. Kemampuan Ulang Pembacaan</label>
+
+<table class="repeat-table">
+  
+  <!-- Header 1 -->
+  <tr>
+    <th rowspan="4">Ulangan ke</th>
+    <th colspan="2">Skala mendekati nol</th>
+    <th colspan="2">Skala setengah kapasitas</th>
+    <th colspan="2">Skala kapasitas maks.</th>
+  </tr>
+
+  <!-- Header 2 (INPUT) -->
+  <tr>
+    <td colspan="2"><input name="nol_ref" class="ref-input"></td>
+    <td colspan="2"><input name="tengah_ref" class="ref-input"></td>
+    <td colspan="2"><input name="max_ref" class="ref-input"></td>
+  </tr>
+
+  <!-- Header 3 (SATUAN) -->
+  <tr>
+    <td colspan="2">gr</td>
+    <td colspan="2">gr</td>
+    <td colspan="2">gr</td>
+  </tr>
+
+  <!-- Header 4 -->
+  <tr>
+    <th>Z</th><th>M</th>
+    <th>Z</th><th>M</th>
+    <th>Z</th><th>M</th>
+  </tr>
+
+
+  <!-- DATA -->
+  
+ <tr>
+  <td>1</td>
+  <td><input type="number" step="0.01" name="Z_Nol_1"></td>
+  <td><input type="number" step="0.01" name="M_Nol_1"></td>
+  <td><input type="number" step="0.01" name="Z_Tengah_1"></td>
+  <td><input type="number" step="0.01" name="M_Tengah_1"></td>
+  <td><input type="number" step="0.01" name="Z_Max_1"></td>
+  <td><input type="number" step="0.01" name="M_Max_1"></td>
+</tr>
+
+<tr>
+  <td>2</td>
+  <td><input type="number" step="0.01" name="Z_Nol_2"></td>
+  <td><input type="number" step="0.01" name="M_Nol_2"></td>
+  <td><input type="number" step="0.01" name="Z_Tengah_2"></td>
+  <td><input type="number" step="0.01" name="M_Tengah_2"></td>
+  <td><input type="number" step="0.01" name="Z_Max_2"></td>
+  <td><input type="number" step="0.01" name="M_Max_2"></td>
+</tr>
+
+<tr>
+  <td>3</td>
+  <td><input type="number" step="0.01" name="Z_Nol_3"></td>
+  <td><input type="number" step="0.01" name="M_Nol_3"></td>
+  <td><input type="number" step="0.01" name="Z_Tengah_3"></td>
+  <td><input type="number" step="0.01" name="M_Tengah_3"></td>
+  <td><input type="number" step="0.01" name="Z_Max_3"></td>
+  <td><input type="number" step="0.01" name="M_Max_3"></td>
+</tr>
+
+<tr>
+  <td>4</td>
+  <td><input type="number" step="0.01" name="Z_Nol_4"></td>
+  <td><input type="number" step="0.01" name="M_Nol_4"></td>
+  <td><input type="number" step="0.01" name="Z_Tengah_4"></td>
+  <td><input type="number" step="0.01" name="M_Tengah_4"></td>
+  <td><input type="number" step="0.01" name="Z_Max_4"></td>
+  <td><input type="number" step="0.01" name="M_Max_4"></td>
+</tr>
+
+<tr>
+  <td>5</td>
+  <td><input type="number" step="0.01" name="Z_Nol_5"></td>
+  <td><input type="number" step="0.01" name="M_Nol_5"></td>
+  <td><input type="number" step="0.01" name="Z_Tengah_5"></td>
+  <td><input type="number" step="0.01" name="M_Tengah_5"></td>
+  <td><input type="number" step="0.01" name="Z_Max_5"></td>
+  <td><input type="number" step="0.01" name="M_Max_5"></td>
+</tr>
+
+<tr>
+  <td>6</td>
+  <td><input type="number" step="0.01" name="Z_Nol_6"></td>
+  <td><input type="number" step="0.01" name="M_Nol_6"></td>
+  <td><input type="number" step="0.01" name="Z_Tengah_6"></td>
+  <td><input type="number" step="0.01" name="M_Tengah_6"></td>
+  <td><input type="number" step="0.01" name="Z_Max_6"></td>
+  <td><input type="number" step="0.01" name="M_Max_6"></td>
+</tr>
+
+<tr>
+  <td>7</td>
+  <td><input type="number" step="0.01" name="Z_Nol_7"></td>
+  <td><input type="number" step="0.01" name="M_Nol_7"></td>
+  <td><input type="number" step="0.01" name="Z_Tengah_7"></td>
+  <td><input type="number" step="0.01" name="M_Tengah_7"></td>
+  <td><input type="number" step="0.01" name="Z_Max_7"></td>
+  <td><input type="number" step="0.01" name="M_Max_7"></td>
+</tr>
+
+<tr>
+  <td>8</td>
+  <td><input type="number" step="0.01" name="Z_Nol_8"></td>
+  <td><input type="number" step="0.01" name="M_Nol_8"></td>
+  <td><input type="number" step="0.01" name="Z_Tengah_8"></td>
+  <td><input type="number" step="0.01" name="M_Tengah_8"></td>
+  <td><input type="number" step="0.01" name="Z_Max_8"></td>
+  <td><input type="number" step="0.01" name="M_Max_8"></td>
+</tr>
+
+<tr>
+  <td>9</td>
+  <td><input type="number" step="0.01" name="Z_Nol_9"></td>
+  <td><input type="number" step="0.01" name="M_Nol_9"></td>
+  <td><input type="number" step="0.01" name="Z_Tengah_9"></td>
+  <td><input type="number" step="0.01" name="M_Tengah_9"></td>
+  <td><input type="number" step="0.01" name="Z_Max_9"></td>
+  <td><input type="number" step="0.01" name="M_Max_9"></td>
+</tr>
+
+<tr>
+  <td>10</td>
+  <td><input type="number" step="0.01" name="Z_Nol_10"></td>
+  <td><input type="number" step="0.01" name="M_Nol_10"></td>
+  <td><input type="number" step="0.01" name="Z_Tengah_10"></td>
+  <td><input type="number" step="0.01" name="M_Tengah_10"></td>
+  <td><input type="number" step="0.01" name="Z_Max_10"></td>
+  <td><input type="number" step="0.01" name="M_Max_10"></td>
+</tr>
+
+</table>
+
+<label>2. Beban Timbangan</label>
+
+<table class="beban-table">
+
+<tr>
+  <th>Beban Timbangan</th>
+  <th>Pembacaan Skala</th>
+  <th>Beban Timbangan</th>
+  <th>Pembacaan Skala</th>
+</tr>
+
+<tr>
+  <td>0</td>
+  <td><input type="number" step="0.01" name="Beban_0_1"></td>
+  <td>6M</td>
+  <td><input type="number" step="0.01" name="Beban_6M_1"></td>
+</tr>
+
+<tr>
+  <td>M</td>
+  <td><input type="number" step="0.01" name="Beban_M_1"></td>
+  <td>6M</td>
+  <td><input type="number" step="0.01" name="Beban_6M_2"></td>
+</tr>
+
+<tr>
+  <td>M</td>
+  <td><input type="number" step="0.01" name="Beban_M_2"></td>
+  <td>0</td>
+  <td><input type="number" step="0.01" name="Beban_0_6"></td>
+</tr>
+
+<tr>
+  <td>0</td>
+  <td><input type="number" step="0.01" name="Beban_0_2"></td>
+  <td>7M</td>
+  <td><input type="number" step="0.01" name="Beban_7M_1"></td>
+</tr>
+
+<tr>
+  <td>2M</td>
+  <td><input type="number" step="0.01" name="Beban_2M_1"></td>
+  <td>7M</td>
+  <td><input type="number" step="0.01" name="Beban_7M_2"></td>
+</tr>
+
+<tr>
+  <td>2M</td>
+  <td><input type="number" step="0.01" name="Beban_2M_2"></td>
+  <td>0</td>
+  <td><input type="number" step="0.01" name="Beban_0_7"></td>
+</tr>
+
+<tr>
+  <td>0</td>
+  <td><input type="number" step="0.01" name="Beban_0_3"></td>
+  <td>8M</td>
+  <td><input type="number" step="0.01" name="Beban_8M_1"></td>
+</tr>
+
+<tr>
+  <td>3M</td>
+  <td><input type="number" step="0.01" name="Beban_3M_1"></td>
+  <td>8M</td>
+  <td><input type="number" step="0.01" name="Beban_8M_2"></td>
+</tr>
+
+<tr>
+  <td>3M</td>
+  <td><input type="number" step="0.01" name="Beban_3M_2"></td>
+  <td>0</td>
+  <td><input type="number" step="0.01" name="Beban_0_8"></td>
+</tr>
+
+<tr>
+  <td>0</td>
+  <td><input type="number" step="0.01" name="Beban_0_4"></td>
+  <td>9M</td>
+  <td><input type="number" step="0.01" name="Beban_9M_1"></td>
+</tr>
+
+<tr>
+  <td>4M</td>
+  <td><input type="number" step="0.01" name="Beban_4M_1"></td>
+  <td>9M</td>
+  <td><input type="number" step="0.01" name="Beban_9M_2"></td>
+</tr>
+
+<tr>
+  <td>4M</td>
+  <td><input type="number" step="0.01" name="Beban_4M_2"></td>
+  <td>0</td>
+  <td><input type="number" step="0.01" name="Beban_0_9"></td>
+</tr>
+
+<tr>
+  <td>0</td>
+  <td><input type="number" step="0.01" name="Beban_0_5"></td>
+  <td>10M</td>
+  <td><input type="number" step="0.01" name="Beban_10M_1"></td>
+</tr>
+
+<tr>
+  <td>5M</td>
+  <td><input type="number" step="0.01" name="Beban_5M_1"></td>
+  <td>10M</td>
+  <td><input type="number" step="0.01" name="Beban_10M_2"></td>
+</tr>
+
+<tr>
+  <td>5M</td>
+  <td><input type="number" step="0.01" name="Beban_5M_2"></td>
+  <td>0</td>
+  <td><input type="number" step="0.01" name="Beban_0_10"></td>
+</tr>
+
+<tr>
+  <td>0</td>
+  <td><input type="number" step="0.01" name="Beban_0_11"></td>
+</tr>
+
+</table>
+
+<label>3. Pengaruh penyimpanan pada pinggan</label>
+
+<div class="pinggan-header">
+  <div>
+    Ø / Luas Pinggan :
+    <input type="number" step="0.01" name="Diameter_Pinggan" class="mini"> mm
+  </div>
+  <div>
+    Massa diatas pinggan :
+    <input type="number" step="0.01" name="Massa_Pinggan" class="mini"> gr
+  </div>
+</div>
+
+<table class="pinggan-table">
+
+<tr>
+  <th>Tengah</th>
+  <th>Depan</th>
+  <th>Belakang</th>
+  <th>Kiri</th>
+  <th>Kanan</th>
+</tr>
+
+<tr>
+  <td><input type="number" step="0.01" name="Pinggan_Tengah"></td>
+  <td><input type="number" step="0.01" name="Pinggan_Depan"></td>
+  <td><input type="number" step="0.01" name="Pinggan_Belakang"></td>
+  <td><input type="number" step="0.01" name="Pinggan_Kiri"></td>
+  <td><input type="number" step="0.01" name="Pinggan_Kanan"></td>
+</tr>
+
+</table>
+
+
+<label>4. Pengaruh pengenolan beban (Tare)</label>
+
+  </div>
+  <div>
+    Nilai Maksimum Tare :
+    <input type="number" step="0.01" name="Max_Tare" class="mini"> gr
+  </div>
+</div>
+
+<div class="tare-container">
+
+  <!-- TANPA TARE -->
+  <div class="tare-box">
+    <div class="tare-title">Tanpa pengenolan beban</div>
+
+    <table>
+      <tr>
+        <th>Beban</th>
+        <th>Penimbangan</th>
+      </tr>
+
+      <tr><td>Zero</td><td><input type="number" step="0.01" name="Tanpa_Zero_1"></td></tr>
+      <tr><td>M</td><td><input type="number" step="0.01" name="Tanpa_M_1"></td></tr>
+      <tr><td>M</td><td><input type="number" step="0.01" name="Tanpa_M_2"></td></tr>
+      <tr><td>Zero</td><td><input type="number" step="0.01" name="Tanpa_Zero_2"></td></tr>
+      <tr><td>Z-M</td><td><input type="number" step="0.01" name="Tanpa_ZM"></td></tr>
+    </table>
+  </div>
+
+  <!-- DENGAN TARE -->
+  <div class="tare-box">
+    <div class="tare-title">Memakai pengenolan beban</div>
+
+    <table>
+      <tr>
+        <th>Beban</th>
+        <th>Penimbangan</th>
+      </tr>
+
+      <tr><td>Zero</td><td><input type="number" step="0.01" name="Tare_Zero_1"></td></tr>
+      <tr><td>M</td><td><input type="number" step="0.01" name="Tare_M_1"></td></tr>
+      <tr><td>M</td><td><input type="number" step="0.01" name="Tare_M_2"></td></tr>
+      <tr><td>Zero</td><td><input type="number" step="0.01" name="Tare_Zero_2"></td></tr>
+      <tr><td>Z-M</td><td><input type="number" step="0.01" name="Tare_ZM"></td></tr>
+    </table>
+  </div>
+
+</div>
+  
+  <button type="submit" id="submitBtn">Kirim</button>
+</form>
+
+<script>
+const scriptURL = "https://script.google.com/macros/s/AKfycbxgiVFc62YCD9kINmOo6FbhQrn2jw05Vginuz9uCZYZUpCcsmnmpfH2XJ6e5J2dGpyMyQ/exec";
+const form = document.getElementById("dataForm");
+const submitBtn = document.getElementById("submitBtn");
+
+// uppercase otomatis
+["X1","X2","X3","X4"].forEach(id => {
+  document.getElementById(id).addEventListener("input", function() {
+    this.value = this.value.toUpperCase();
+  });
+});
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const x1 = X1.value.trim();
+  const x2 = X2.value.trim();
+  const x3 = X3.value.trim();
+
+  if (!x1 || !x2) {
+    alert("X1 dan X2 wajib diisi");
+    return;
+  }
+
+  let finalCode = `TJN-${x1}-${x2}`;
+  if (x3) finalCode += `-${x3}`;
+
+  InstrumentCode.value = finalCode;
+
+  // checkbox
+  const checks = document.querySelectorAll(".stdCheck:checked");
+  if (checks.length === 0) {
+    alert("Pilih minimal satu Identitas Standard");
+    return;
+  }
+
+  IdentitasStandard.value = [...checks].map(c => c.value).join(", ");
+
+  const formData = new FormData(form);
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Mengirim...";
+
+  fetch(scriptURL, {
+    method: "POST",
+    mode: "no-cors",
+    body: formData
+  })
+  .then(() => {
+    alert("✅ Data berhasil dikirim\nKode: " + finalCode);
+    form.reset();
+  })
+  .catch(err => alert("❌ Error: " + err))
+  .finally(() => {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Kirim";
+  });
+});
+</script>
+
+</body>
+</html>
