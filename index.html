@@ -321,6 +321,11 @@ button:hover {
   
 <label>1. Kemampuan Ulang Pembacaan</label>
 
+<select id="unitSelect" name="Satuan" style="width:100px; margin-bottom:10px;">
+  <option value="gr">gr</option>
+  <option value="kg">kg</option>
+</select>
+
 <table class="repeat-table">
   
   <!-- Header 1 -->
@@ -340,9 +345,9 @@ button:hover {
 
   <!-- Header 3 (SATUAN) -->
   <tr>
-    <td colspan="2">gr</td>
-    <td colspan="2">gr</td>
-    <td colspan="2">gr</td>
+    <td colspan="2"><span class="unit-label">gr</span></td>
+    <td colspan="2"><span class="unit-label">gr</span></td>
+    <td colspan="2"><span class="unit-label">gr</span></td>
   </tr>
 
   <!-- Header 4 -->
@@ -589,7 +594,7 @@ button:hover {
   </div>
   <div>
     Massa diatas pinggan :
-    <input type="number" step="0.01" name="Massa_Pinggan" class="mini"> gr
+    <input type="number" step="0.01" name="Massa_Pinggan" class="mini"> <span class="unit-label">gr</span>
   </div>
 </div>
 
@@ -619,7 +624,7 @@ button:hover {
   </div>
   <div>
     Nilai Maksimum Tare :
-    <input type="number" step="0.01" name="Max_Tare" class="mini"> gr
+    <input type="number" step="0.01" name="Max_Tare" class="mini"> <span class="unit-label">gr</span>
   </div>
 </div>
 
@@ -667,7 +672,7 @@ button:hover {
 </form>
 
 <script>
-const scriptURL = "https://script.google.com/macros/s/AKfycbze7XLmxnqGqbu5hpxZZi0-qhaImYeIL4-pCzqLjgLTSztRsOk7Soryceze5MdjDZyp4Q/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxmX6nmdc6wj-29CV9L2arL4aQx0ZI9QYjN7sUh_KhWym-7XAW8axpjXQoo5yAjGLn97Q/exec";
 const form = document.getElementById("dataForm");
 const submitBtn = document.getElementById("submitBtn");
 
@@ -723,6 +728,18 @@ form.addEventListener("submit", function(e){
     submitBtn.disabled = false;
     submitBtn.textContent = "Kirim";
   });
+});
+
+const unitSelect = document.getElementById("unitSelect");
+
+unitSelect.addEventListener("change", function () {
+
+  const unit = this.value;
+
+  document.querySelectorAll(".unit-label").forEach(el => {
+    el.textContent = unit;
+  });
+
 });
 </script>
 
